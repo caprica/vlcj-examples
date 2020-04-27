@@ -78,6 +78,7 @@
     </distributionManagement>
 
     <properties>
+        <java.version>1.8</java.version>
         <vlcj.version>5.0.0-SNAPSHOT</vlcj.version>
     </properties>
 
@@ -132,8 +133,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                     <compilerArgument>-Xlint:serial</compilerArgument>
                 </configuration>
@@ -190,9 +191,9 @@
                     <footer>(C)2020 Caprica Software Limited</footer>
                     <show>public</show>
                     <quiet>true</quiet>
-                    <failOnError>true</failOnError>
+                    <failOnError>false</failOnError>
                     <additionalOptions>-html5</additionalOptions>
-                    <source>11</source>
+                    <source>${java.version}</source>
                 </configuration>
                 <executions>
                     <execution>
