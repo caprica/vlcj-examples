@@ -23,6 +23,7 @@ import uk.co.caprica.vlcj.media.MediaRef;
 import uk.co.caprica.vlcj.media.TrackType;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
 import uk.co.caprica.vlcj.player.base.MediaPlayerEventListener;
+import uk.co.caprica.vlcj.player.base.TitleDescription;
 
 /**
  * Implementation of a {@link MediaPlayerEventListener} that logs all invocations.
@@ -97,8 +98,13 @@ public class LoggingMediaPlayerEventAdapter implements MediaPlayerEventListener 
     }
 
     @Override
-    public void titleChanged(MediaPlayer mediaPlayer, int newTitle) {
-        System.out.printf("titleChanged(mediaPlayer=%s,newTitle=%d)%n", mediaPlayer, newTitle);
+    public void titleListChanged(MediaPlayer mediaPlayer) {
+        System.out.printf("titleListChanged(mediaPlayer=%s)%n", mediaPlayer);
+    }
+
+    @Override
+    public void titleSelectionChanged(MediaPlayer mediaPlayer, TitleDescription title, int index) {
+        System.out.printf("titleSelectionChanged(mediaPlayer=%s,newTitle=%d)%n", mediaPlayer, index);
     }
 
     @Override
