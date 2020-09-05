@@ -20,8 +20,11 @@
 package uk.co.caprica.vlcj.test.info;
 
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
+import uk.co.caprica.vlcj.media.TrackType;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
 import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter;
+import uk.co.caprica.vlcj.player.base.Track;
+import uk.co.caprica.vlcj.player.base.TrackList;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
 /**
@@ -36,47 +39,47 @@ import uk.co.caprica.vlcj.test.VlcjTest;
  * <p>
  * In all cases, the other functions for title, video, audio and chapter descriptions require that a
  * video output has been created before they return valid information.
+ * <p>
+ * For the new (LibVLC 4.0.0) track information it appears that the track information is available
+ * when an elementary stream added event has been received.
  */
 public class MediaInfoTest extends VlcjTest {
 
-    public static void main(String[] args) {
-        if(args.length != 1) {
+    public static void main(String[] args) throws Exception {
+        if (args.length != 1) {
             System.out.println("Specify an MRL");
             System.exit(1);
         }
 
-        MediaPlayerFactory factory = new MediaPlayerFactory();
+        MediaPlayerFactory factory = new MediaPlayerFactory("--no-dvdnav-menu");
         final MediaPlayer mediaPlayer = factory.mediaPlayers().newMediaPlayer();
 
         mediaPlayer.events().addMediaPlayerEventListener(new MediaPlayerEventAdapter() {
             @Override
-            public void mediaPlayerReady(MediaPlayer mediaPlayer) {
-                System.out.println("MEDIA PLAYER READY...");
-                System.out.println("     Track Information: " + mediaPlayer.media().info().tracks());
-                System.out.println("    Title Descriptions: " + mediaPlayer.titles().titleDescriptions());
-                System.out.println("    Video Descriptions: " + mediaPlayer.video().trackDescriptions());
-                System.out.println("    Audio Descriptions: " + mediaPlayer.audio().trackDescriptions());
-                System.out.println("Chapter Descriptions: " + mediaPlayer.chapters().allDescriptions());
-                System.out.println();
+            public void elementaryStreamAdded(MediaPlayer mediaPlayer, TrackType type, int id, String streamId) {
+                TrackList<? extends Track> tracks;
+                switch (type) {
+                    case AUDIO:
+                        tracks = mediaPlayer.tracks().audioTracks();
+                        break;
+                    case VIDEO:
+                        tracks = mediaPlayer.tracks().videoTracks();
+                        break;
+                    case TEXT:
+                        tracks = mediaPlayer.tracks().textTracks();
+                        break;
+                    default:
+                        System.out.println("no tracks for " + type);
+                        return;
+                }
+                System.out.printf("%s: %s%n", type, tracks);
             }
         });
 
         mediaPlayer.media().prepare(args[0]);
         mediaPlayer.controls().start();
 
-        try {
-            Thread.sleep(5000);
-        }
-        catch(InterruptedException e) {
-        }
-
-//        System.out.println("Track Information before end: " + mediaPlayer.getTrackInfo());
-//
-//        System.out.println("    UNKNOWN: " +  mediaPlayer.getTrackInfo(TrackType.UNKNOWN));
-//        System.out.println("      AUDIO: " +  mediaPlayer.getTrackInfo(TrackType.AUDIO));
-//        System.out.println("      VIDEO: " +  mediaPlayer.getTrackInfo(TrackType.VIDEO));
-//        System.out.println("       TEXT: " +  mediaPlayer.getTrackInfo(TrackType.TEXT));
-//        System.out.println("AUDIO+VIDEO: " +  mediaPlayer.getTrackInfo(TrackType.AUDIO, TrackType.VIDEO));
+        Thread.sleep(3000);
 
         mediaPlayer.controls().stop();
 
