@@ -19,7 +19,8 @@
 
 package uk.co.caprica.vlcj.test.mediacallback;
 
-import uk.co.caprica.vlcj.media.callback.seekable.RandomAccessFileMedia;
+import uk.co.caprica.vlcj.media.callback.seekable.FileMappedByteBufferCallbackMedia;
+import uk.co.caprica.vlcj.media.callback.seekable.MappedByteBufferCallbackMedia;
 import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.test.VlcjTest;
 import uk.co.caprica.vlcj.test.minimal.MinimalTestPlayer;
@@ -27,8 +28,7 @@ import uk.co.caprica.vlcj.test.minimal.MinimalTestPlayer;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.util.Random;
+import java.nio.file.Paths;
 
 /**
  * Minimal test for the media callbacks.
@@ -36,7 +36,7 @@ import java.util.Random;
 public class MinimalMediaCallbackTest extends VlcjTest {
 
     public static void main(String[] args) throws Exception {
-        if(args.length != 1) {
+        if (args.length != 1) {
             System.out.println("Specify an MRL to play");
             System.exit(1);
         }
@@ -56,10 +56,9 @@ public class MinimalMediaCallbackTest extends VlcjTest {
         f.setContentPane(mediaPlayerComponent);
         f.setVisible(true);
 
-        RandomAccessFileMedia raf = new RandomAccessFileMedia(new File(args[0]));
+        MappedByteBufferCallbackMedia media = new FileMappedByteBufferCallbackMedia(Paths.get(args[0]));
 
-        mediaPlayerComponent.mediaPlayer().media().play(raf);
-        mediaPlayerComponent.mediaPlayer().controls().play();
+        mediaPlayerComponent.mediaPlayer().media().play(media);
 
         Thread.currentThread().join();
     }
