@@ -128,18 +128,23 @@ public class LoggingMediaPlayerEventAdapter implements MediaPlayerEventListener 
     }
 
     @Override
-    public void elementaryStreamAdded(MediaPlayer mediaPlayer, TrackType type, int id) {
-        System.out.printf("elementaryStreamAdded(mediaPlayer=%s,type=%d,id=%d)%n", mediaPlayer, type, id);
+    public void elementaryStreamAdded(MediaPlayer mediaPlayer, TrackType type, int id, String streamId) {
+        System.out.printf("elementaryStreamAdded(mediaPlayer=%s,type=%s,id=%d)%n", mediaPlayer, type, id);
     }
 
     @Override
-    public void elementaryStreamDeleted(MediaPlayer mediaPlayer, TrackType type, int id) {
-        System.out.printf("elementaryStreamDeleted(mediaPlayer=%s,type=%d,id=%d)%n", mediaPlayer, type, id);
+    public void elementaryStreamDeleted(MediaPlayer mediaPlayer, TrackType type, int id, String streamId) {
+        System.out.printf("elementaryStreamDeleted(mediaPlayer=%s,type=%s,id=%d)%n", mediaPlayer, type, id);
     }
 
     @Override
-    public void elementaryStreamSelected(MediaPlayer mediaPlayer, TrackType type, int id) {
-        System.out.printf("elementaryStreamSelected(mediaPlayer=%s,type=%d,id=%d)%n", mediaPlayer, type, id);
+    public void elementaryStreamUpdated(MediaPlayer mediaPlayer, TrackType type, int id, String streamId) {
+        System.out.printf("elementaryStreamUpdated(mediaPlayer=%s,type=%s,id=%d,streamId=%s)%n", mediaPlayer, type, id, streamId);
+    }
+
+    @Override
+    public void elementaryStreamSelected(MediaPlayer mediaPlayer, TrackType type, String unselectedStreamId, String selectedStreamId) {
+        System.out.printf("elementaryStreamSelected(mediaPlayer=%s,type=%s,unselectedStreamId=%s,selectedStreamId=%s)%n", mediaPlayer, type, unselectedStreamId, selectedStreamId);
     }
 
     @Override
