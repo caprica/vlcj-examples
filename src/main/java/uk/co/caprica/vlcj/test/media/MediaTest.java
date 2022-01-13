@@ -28,7 +28,6 @@ import uk.co.caprica.vlcj.media.MediaSlave;
 import uk.co.caprica.vlcj.media.MediaSlavePriority;
 import uk.co.caprica.vlcj.media.MediaSlaveType;
 import uk.co.caprica.vlcj.media.Meta;
-import uk.co.caprica.vlcj.media.TrackInfo;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
 import uk.co.caprica.vlcj.player.base.State;
 import uk.co.caprica.vlcj.test.VlcjTest;
@@ -55,7 +54,7 @@ public class MediaTest extends VlcjTest {
         addedSlave = media.slaves().add(MediaSlaveType.SUBTITLE, MediaSlavePriority.HIGHEST, "file:///home/mark/test.srt");
         System.out.println("Added slave " + addedSlave);
 
-        addedSlave = media.slaves().add(MediaSlaveType.AUDIO, MediaSlavePriority.HIGHEST, "file:///home/mark/test.mp3");
+        addedSlave = media.slaves().add(MediaSlaveType.GENERIC, MediaSlavePriority.HIGHEST, "file:///home/mark/test.mp3");
         System.out.println("Added slave " + addedSlave);
 
         List<MediaSlave> slaves = media.slaves().get();
@@ -94,17 +93,7 @@ public class MediaTest extends VlcjTest {
                     }
                 }
 
-                // Slaves don't appear in this list?
-                for (TrackInfo trackInfo : media.info().tracks()) {
-                    System.out.println("Track: " + trackInfo);
-                }
-
                 parseLatch.countDown();
-            }
-
-            @Override
-            public void mediaFreed(Media media, MediaRef mediaFreed) {
-                System.out.printf("freed%n");
             }
 
             @Override
