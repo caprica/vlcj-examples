@@ -123,11 +123,6 @@ public class LoggingMediaPlayerEventAdapter implements MediaPlayerEventListener 
     }
 
     @Override
-    public void scrambledChanged(MediaPlayer mediaPlayer, int newScrambled) {
-        System.out.printf("scrambledChanged(mediaPlayer=%s,newScrambled=%d)%n", mediaPlayer, newScrambled);
-    }
-
-    @Override
     public void elementaryStreamAdded(MediaPlayer mediaPlayer, TrackType type, int id, String streamId) {
         System.out.printf("elementaryStreamAdded(mediaPlayer=%s,type=%s,id=%d)%n", mediaPlayer, type, id);
     }
@@ -170,6 +165,26 @@ public class LoggingMediaPlayerEventAdapter implements MediaPlayerEventListener 
     @Override
     public void chapterChanged(MediaPlayer mediaPlayer, int newChapter) {
         System.out.printf("chapterChanged(mediaPlayer=%s,newChapter=%d)%n", mediaPlayer, newChapter);
+    }
+
+    @Override
+    public void programAdded(MediaPlayer mediaPlayer, int id) {
+        System.out.printf("programAdded(mediaPlayer=%s,id=%d)%n", mediaPlayer, id);
+    }
+
+    @Override
+    public void programDeleted(MediaPlayer mediaPlayer, int id) {
+        System.out.printf("programDeleted(mediaPlayer=%s,id=%d)%n", mediaPlayer, id);
+    }
+
+    @Override
+    public void programUpdated(MediaPlayer mediaPlayer, int id) {
+        System.out.printf("programUpdated(mediaPlayer=%s,id=%d)%n", mediaPlayer, id);
+    }
+
+    @Override
+    public void programSelected(MediaPlayer mediaPlayer, int unselectedId, int selectedId) {
+        System.out.printf("programSelected(mediaPlayer=%s,unselectedId=%d,selectedId=%d)%n", mediaPlayer, unselectedId, selectedId);
     }
 
     @Override
