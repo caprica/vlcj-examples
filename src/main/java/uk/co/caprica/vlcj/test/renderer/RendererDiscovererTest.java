@@ -71,7 +71,7 @@ public class RendererDiscovererTest {
                     // longer need it)
                     itemAdded.hold();
 
-                    boolean result = mediaPlayer.setRenderer(itemAdded);
+                    boolean result = mediaPlayer.renderer().setRenderer(itemAdded);
                     System.out.println("result of set renderer is " + result);
 
                     result = mediaPlayer.media().play(mrl);
