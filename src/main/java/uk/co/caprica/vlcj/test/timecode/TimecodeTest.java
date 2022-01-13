@@ -21,7 +21,10 @@ package uk.co.caprica.vlcj.test.timecode;
 
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
 import uk.co.caprica.vlcj.media.TextTrackInfo;
+import uk.co.caprica.vlcj.media.TrackInfo;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
+import uk.co.caprica.vlcj.player.base.TextTrack;
+import uk.co.caprica.vlcj.player.base.Track;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
 /**
@@ -98,10 +101,10 @@ public class TimecodeTest extends VlcjTest {
      */
     private void showTimecode() {
         // We have to search for the text/spu track containing the timecode...
-        Integer timecodeTrack = null;
-        for (TextTrackInfo trackInfo : player.media().info().textTracks()) {
+        Track timecodeTrack = null;
+        for (TextTrack trackInfo : player.tracks().textTracks().tracks()) {
             if (TIMECODE_CODEC.equals(trackInfo.codecName())) {
-                timecodeTrack = trackInfo.id();
+                timecodeTrack = trackInfo;
                 break;
             }
         }
@@ -110,7 +113,7 @@ public class TimecodeTest extends VlcjTest {
 
         // If we found the timecode track, enable it
         if (timecodeTrack != null) {
-            player.subpictures().setTrack(timecodeTrack);
+            player.tracks().selectTrack(timecodeTrack);
         }
     }
 
