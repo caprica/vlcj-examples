@@ -149,7 +149,8 @@ public class SetAudioOutputTest extends VlcjTest {
 
                 mediaPlayer.audio().setOutput(audioOutputName);
                 if(audioDeviceId != null) {
-                    mediaPlayer.audio().setOutputDevice(audioOutputName, audioDeviceId);
+                    // FIXME needs refactoring
+//                    mediaPlayer.audio().setOutputDevice(audioOutputName, audioDeviceId);
                 }
 
                 audioOutputTextField.setText(audioOutputName);
@@ -161,26 +162,27 @@ public class SetAudioOutputTest extends VlcjTest {
             }
         };
 
-        for(AudioOutput audioOutput : audioOutputs) {
-            List<AudioDevice> devices = audioOutput.getDevices();
-            if(devices.isEmpty()) {
-                JMenuItem audioOutputMenuItem = new JMenuItem(audioOutput.getDescription());
-                audioOutputMenuItem.putClientProperty("AudioOutputName", audioOutput.getName());
-                audioOutputMenu.add(audioOutputMenuItem);
-                audioOutputMenuItem.addActionListener(audioMenuListener);
-            }
-            else {
-                JMenu audioOutputMenuItem = new JMenu(audioOutput.getDescription());
-                for(AudioDevice audioDevice : audioOutput.getDevices()) {
-                    JMenuItem audioDeviceMenuItem = new JMenuItem("<html><b>" + audioDevice.getDeviceId() + "</b>&nbsp;&nbsp;<i>" + audioDevice.getLongName() + "</i></html>");
-                    audioDeviceMenuItem.putClientProperty("AudioOutputName", audioOutput.getName());
-                    audioDeviceMenuItem.putClientProperty("AudioDeviceId", audioDevice.getDeviceId());
-                    audioOutputMenuItem.add(audioDeviceMenuItem);
-                    audioDeviceMenuItem.addActionListener(audioMenuListener);
-                }
-                audioOutputMenu.add(audioOutputMenuItem);
-            }
-        }
+        // FIXME needs refacatoring
+//        for(AudioOutput audioOutput : audioOutputs) {
+//            List<AudioDevice> devices = audioOutput.getDevices();
+//            if(devices.isEmpty()) {
+//                JMenuItem audioOutputMenuItem = new JMenuItem(audioOutput.getDescription());
+//                audioOutputMenuItem.putClientProperty("AudioOutputName", audioOutput.getName());
+//                audioOutputMenu.add(audioOutputMenuItem);
+//                audioOutputMenuItem.addActionListener(audioMenuListener);
+//            }
+//            else {
+//                JMenu audioOutputMenuItem = new JMenu(audioOutput.getDescription());
+//                for(AudioDevice audioDevice : audioOutput.getDevices()) {
+//                    JMenuItem audioDeviceMenuItem = new JMenuItem("<html><b>" + audioDevice.getDeviceId() + "</b>&nbsp;&nbsp;<i>" + audioDevice.getLongName() + "</i></html>");
+//                    audioDeviceMenuItem.putClientProperty("AudioOutputName", audioOutput.getName());
+//                    audioDeviceMenuItem.putClientProperty("AudioDeviceId", audioDevice.getDeviceId());
+//                    audioOutputMenuItem.add(audioDeviceMenuItem);
+//                    audioDeviceMenuItem.addActionListener(audioMenuListener);
+//                }
+//                audioOutputMenu.add(audioOutputMenuItem);
+//            }
+//        }
 
         menuBar.add(audioOutputMenu);
 

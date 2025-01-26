@@ -78,7 +78,7 @@
     </distributionManagement>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <vlcj.version>5.0.0-SNAPSHOT</vlcj.version>
     </properties>
 

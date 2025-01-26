@@ -22,10 +22,11 @@ package uk.co.caprica.vlcj.test.bare;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.StringArray;
-import uk.co.caprica.vlcj.binding.RuntimeUtil;
+
 import uk.co.caprica.vlcj.binding.internal.libvlc_instance_t;
 import uk.co.caprica.vlcj.binding.internal.libvlc_media_player_t;
 import uk.co.caprica.vlcj.binding.internal.libvlc_media_t;
+import uk.co.caprica.vlcj.binding.support.runtime.RuntimeUtil;
 import uk.co.caprica.vlcj.factory.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
@@ -34,18 +35,18 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_new_path;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_new;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_play;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_release;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_set_hwnd;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_set_media;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_set_nsobject;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_set_xwindow;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_stop_async;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_release;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_new;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_release;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_new_path;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_new;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_play;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_release;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_set_hwnd;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_set_media;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_set_nsobject;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_set_xwindow;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_stop_async;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_release;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_new;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_release;
 
 /**
  * A minimal test with video output embedded in a Java frame. This test uses the
@@ -123,7 +124,7 @@ public class BareBonesEmbeddedExample extends VlcjTest {
         catch(InterruptedException e) {
         }
 
-        libvlc_media_t media = libvlc_media_new_path(instance, mrl);
+        libvlc_media_t media = libvlc_media_new_path(mrl);
         libvlc_media_player_set_media(mediaPlayer, media);
         libvlc_media_release(media);
         libvlc_media_player_play(mediaPlayer);

@@ -22,10 +22,9 @@ package uk.co.caprica.vlcj.test.component;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
 import uk.co.caprica.vlcj.player.component.CallbackMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.videosurface.callback.BufferFormat;
-import uk.co.caprica.vlcj.player.embedded.videosurface.callback.BufferFormatCallback;
 import uk.co.caprica.vlcj.player.embedded.videosurface.callback.BufferFormatCallbackAdapter;
 import uk.co.caprica.vlcj.player.embedded.videosurface.callback.RenderCallbackAdapter;
-import uk.co.caprica.vlcj.player.embedded.videosurface.callback.format.RV32BufferFormat;
+import uk.co.caprica.vlcj.player.embedded.videosurface.callback.format.StandardBufferFormat;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
 import javax.swing.*;
@@ -67,7 +66,7 @@ public class CallbackMediaPlayerComponent2Test extends VlcjTest {
         @Override
         public BufferFormat getBufferFormat(int sourceWidth, int sourceHeight) {
             newVideoBuffer(sourceWidth, sourceHeight);
-            return new RV32BufferFormat(sourceWidth, sourceHeight);
+            return new StandardBufferFormat(sourceWidth, sourceHeight);
         }
 
     }

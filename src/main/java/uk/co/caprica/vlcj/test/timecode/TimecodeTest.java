@@ -20,8 +20,6 @@
 package uk.co.caprica.vlcj.test.timecode;
 
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
-import uk.co.caprica.vlcj.media.TextTrackInfo;
-import uk.co.caprica.vlcj.media.TrackInfo;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
 import uk.co.caprica.vlcj.player.base.TextTrack;
 import uk.co.caprica.vlcj.player.base.Track;

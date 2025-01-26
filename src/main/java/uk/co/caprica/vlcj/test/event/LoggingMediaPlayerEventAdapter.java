@@ -73,6 +73,11 @@ public class LoggingMediaPlayerEventAdapter implements MediaPlayerEventListener 
     }
 
     @Override
+    public void stopping(MediaPlayer mediaPlayer) {
+        System.out.printf("stopping(mediaPlayer=%s%n", mediaPlayer);
+    }
+
+    @Override
     public void finished(MediaPlayer mediaPlayer) {
         System.out.printf("finished(mediaPlayer=%s%n", mediaPlayer);
     }
@@ -83,7 +88,7 @@ public class LoggingMediaPlayerEventAdapter implements MediaPlayerEventListener 
     }
 
     @Override
-    public void positionChanged(MediaPlayer mediaPlayer, float newPosition) {
+    public void positionChanged(MediaPlayer mediaPlayer, double newPosition) {
         System.out.printf("positionChanged(mediaPlayer=%s,newPosition=%f)%n", mediaPlayer, newPosition);
     }
 
@@ -165,6 +170,11 @@ public class LoggingMediaPlayerEventAdapter implements MediaPlayerEventListener 
     @Override
     public void chapterChanged(MediaPlayer mediaPlayer, int newChapter) {
         System.out.printf("chapterChanged(mediaPlayer=%s,newChapter=%d)%n", mediaPlayer, newChapter);
+    }
+
+    @Override
+    public void recordChanged(MediaPlayer mediaPlayer, boolean recording, String recordedFilePath) {
+        System.out.printf("recordChanged(mediaPlayer=%s,recording=%s,recordedFilePath=%s)%n", mediaPlayer, recording, recordedFilePath);
     }
 
     @Override

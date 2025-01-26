@@ -117,7 +117,7 @@ public class RipDvdTest extends VlcjTest {
             }
 
             @Override
-            public void positionChanged(MediaPlayer mediaPlayer, float newPosition) {
+            public void positionChanged(MediaPlayer mediaPlayer, double newPosition) {
                 // This escape sequence to reset the terminal window cursor back to
                 // column zero will not work in the Eclipse console window and most
                 // likely not work on Windows at all

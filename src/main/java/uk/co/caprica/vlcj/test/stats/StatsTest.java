@@ -215,8 +215,5 @@ public class StatsTest extends VlcjTest {
         lostPicturesValueLabel.setText(String.valueOf(stats.picturesLost()));
         playedABuffersValueLabel.setText(String.valueOf(stats.audioBuffersPlayed()));
         lostABuffersValueLabel.setText(String.valueOf(stats.audioBuffersLost()));
-        sentPacketsValueLabel.setText(String.valueOf(stats.sentPackets()));
-        sentBytesValueLabel.setText(String.valueOf(stats.sentBytes()));
-        sendBitRateValueLabel.setText(String.valueOf(stats.sendBitrate()));
     }
 }

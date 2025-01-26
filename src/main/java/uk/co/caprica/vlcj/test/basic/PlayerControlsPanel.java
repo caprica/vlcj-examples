@@ -408,17 +408,18 @@ public class PlayerControlsPanel extends JPanel {
         subTitlesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int spu = mediaPlayer.subpictures().track();
-                if(spu > -1) {
-                    spu ++ ;
-                    if(spu > mediaPlayer.subpictures().trackCount()) {
-                        spu = -1;
-                    }
-                }
-                else {
-                    spu = 0;
-                }
-                mediaPlayer.subpictures().setTrack(spu);
+                // FIXME new tracks selection API
+//                int spu = mediaPlayer.subpictures().track();
+//                if(spu > -1) {
+//                    spu ++ ;
+//                    if(spu > mediaPlayer.subpictures().trackCount()) {
+//                        spu = -1;
+//                    }
+//                }
+//                else {
+//                    spu = 0;
+//                }
+//                mediaPlayer.subpictures().setTrack(spu);
             }
         });
     }
