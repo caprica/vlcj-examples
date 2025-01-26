@@ -29,7 +29,6 @@ import uk.co.caprica.vlcj.media.MediaSlavePriority;
 import uk.co.caprica.vlcj.media.MediaSlaveType;
 import uk.co.caprica.vlcj.media.Meta;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
-import uk.co.caprica.vlcj.player.base.State;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
 import java.util.List;
@@ -47,7 +46,6 @@ public class MediaTest extends VlcjTest {
         System.out.println(media);
 
         System.out.println("media type " + media.info().type());
-        System.out.println("media state " + media.info().state());
 
         boolean addedSlave;
 
@@ -94,11 +92,6 @@ public class MediaTest extends VlcjTest {
                 }
 
                 parseLatch.countDown();
-            }
-
-            @Override
-            public void mediaStateChanged(Media media, State newState) {
-                System.out.printf("state changed: %s%n", newState);
             }
 
             @Override

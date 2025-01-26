@@ -25,15 +25,15 @@ import uk.co.caprica.vlcj.binding.internal.libvlc_media_player_t;
 import uk.co.caprica.vlcj.binding.internal.libvlc_media_t;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_new_path;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_new;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_play;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_release;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_set_media;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_player_stop_async;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_media_release;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_new;
-import static uk.co.caprica.vlcj.binding.LibVlc.libvlc_release;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_new_path;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_new;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_play;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_release;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_set_media;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_player_stop_async;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_media_release;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_new;
+import static uk.co.caprica.vlcj.binding.lib.LibVlc.libvlc_release;
 
 /**
  * The most minimal test that uses the raw bindings rather than any higher level
@@ -49,7 +49,7 @@ public class BareBonesTest extends VlcjTest {
         libvlc_instance_t instance = libvlc_new(0, new StringArray(new String[0]));
 
         libvlc_media_player_t mediaPlayer = libvlc_media_player_new(instance);
-        libvlc_media_t media = libvlc_media_new_path(instance, args[0]);
+        libvlc_media_t media = libvlc_media_new_path(args[0]);
         libvlc_media_player_set_media(mediaPlayer, media);
         libvlc_media_player_play(mediaPlayer);
 

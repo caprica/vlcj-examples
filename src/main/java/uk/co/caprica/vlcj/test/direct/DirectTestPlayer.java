@@ -26,7 +26,7 @@ import uk.co.caprica.vlcj.player.embedded.videosurface.callback.BufferFormat;
 import uk.co.caprica.vlcj.player.embedded.videosurface.callback.BufferFormatCallback;
 import uk.co.caprica.vlcj.player.embedded.videosurface.callback.BufferFormatCallbackAdapter;
 import uk.co.caprica.vlcj.player.embedded.videosurface.callback.RenderCallback;
-import uk.co.caprica.vlcj.player.embedded.videosurface.callback.format.RV32BufferFormat;
+import uk.co.caprica.vlcj.player.embedded.videosurface.callback.format.StandardBufferFormat;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
 import javax.swing.*;
@@ -154,6 +154,10 @@ public class DirectTestPlayer extends VlcjTest {
         // Buffered image
 
         @Override
+        public void lock(MediaPlayer mediaPlayer) {
+        }
+
+        @Override
         public void display(MediaPlayer mediaPlayer, ByteBuffer[] nativeBuffers, BufferFormat bufferFormat) {
             ByteBuffer bb = nativeBuffers[0];
             IntBuffer ib = bb.asIntBuffer();
@@ -174,13 +178,17 @@ public class DirectTestPlayer extends VlcjTest {
             image.setRGB(0, 0, width, height, rgbBuffer, 0, width);
             imagePane.repaint();
         }
+
+        @Override
+        public void unlock(MediaPlayer mediaPlayer) {
+        }
     }
 
     private final class TestBufferFormatCallback extends BufferFormatCallbackAdapter {
 
         @Override
         public BufferFormat getBufferFormat(int sourceWidth, int sourceHeight) {
-            return new RV32BufferFormat(width, height);
+            return new StandardBufferFormat(sourceWidth, sourceHeight);
         }
 
     }

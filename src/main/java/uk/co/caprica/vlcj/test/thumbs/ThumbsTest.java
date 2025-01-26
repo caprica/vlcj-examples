@@ -74,7 +74,7 @@ public class ThumbsTest extends VlcjTest {
         mediaPlayer.events().addMediaPlayerEventListener(new MediaPlayerEventAdapter() {
 
             @Override
-            public void positionChanged(MediaPlayer mediaPlayer, float newPosition) {
+            public void positionChanged(MediaPlayer mediaPlayer, double newPosition) {
                 if(newPosition >= VLC_THUMBNAIL_POSITION * 0.9f) { /* 90% margin */
                     inPositionLatch.countDown();
                 }

@@ -61,7 +61,7 @@ public class NativeLogTest extends VlcjTest {
         log.setLevel(LogLevel.DEBUG);
         log.addLogListener(new LogEventListener() {
             @Override
-            public void log(LogLevel level, String module, String file, Integer line, String name, String header, Integer id, String message) {
+            public void log(LogLevel level, String module, String file, Integer line, String name, String header, Long id, String message) {
                 System.out.printf("[%-20s] (%-20s) %7s: %s\n", module, name, level, message);
             }
         });
