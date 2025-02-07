@@ -72,7 +72,7 @@ public class CallbackMediaPlayerComponent2Test extends VlcjTest {
     }
 
     private void newVideoBuffer(int width, int height) {
-        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
         defaultRenderCallback.setImageBuffer(image);
     }
 
